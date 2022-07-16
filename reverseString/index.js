@@ -5,7 +5,21 @@
 //   reverse('Hello!') === '!olleH'
 
 function reverse(str) {
-	return str.split('').reverse().join('');
+	// **** solution 1 ****
+	// return str.split('').reverse().join('');
+	
+	// **** solution 2 ****
+	// let rev='';
+	// for(let i=0;i<str.length;i++){
+	// 	rev = str[i] +  rev; 
+	// }
+	// return rev
+
+	// **** solution 3 ****
+	return str.split('').reduce((rev,char)=>{
+		return rev = char + rev;
+	},"")
+
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
