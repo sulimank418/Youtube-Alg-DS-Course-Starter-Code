@@ -6,7 +6,20 @@
 // chunk(["a", "b", "c", "d"], 2) --> [[ "a", "b"], ["c", "d"]]
 // chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
 
-function chunk(array, size) {}
+function chunk(array, size) {
+  let res = [];
+  for(let i=0;i<array.length;i++){
+    let last  = res[res.length-1];
+    const item = array[i]
+    
+    if(!last || last.length ===  size){
+      res.push([item])
+    }else{
+      last.push(item)
+    }
+  }
+  return res;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

@@ -10,8 +10,7 @@
 function reverseInt(n) {
   let str = n.toString().split('').reverse().join('');
   str = parseInt(str);
-  if(n<0)
-    str = -1 * str;
+  if(n<0) str = -1 * str;
   return str;
 }
 

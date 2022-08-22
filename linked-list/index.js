@@ -1,11 +1,93 @@
 // Implement classes Node and Linked List
 
-class Node {}
+class Node {
+	constructor(data, next = null) {
+		this.data = data;
+		this.next = next;
+	}
+}
 
 class LinkedList {
 	constructor() {
 		this.head = null;
 		this.length = 0;
+	}
+	unshift(data) {
+		this.head = new Node(data, this.head)
+		this.length++
+	}
+	getFirst() {
+		return this.head
+	}
+	getLast() {
+		var current = this.head
+		while (current && current.next) {
+			current = current.next
+		}
+		return current
+	}
+	clear() {
+		this.head = null
+		this.length = 0
+	}
+	shift() {
+		if (!this.head) {
+			return;
+		}
+		var old = this.head
+		this.head = this.head.next
+		this.length--
+		return old
+	}
+	pop() {
+		if (!this.head) {
+			return;
+		}
+		var current = this.head
+		var last = this.getLast()
+		if (this.length == 1) {
+			return this.shift()
+		}
+		while (current.next !== last) {
+			current = current.next
+		}
+		current.next = null
+		this.length--
+		return last
+	}
+	push(data){
+		var current= this.head
+		if(!this.head){
+			this.head = new Node(data)
+			this.length++
+			return;
+		}
+		while(current.next){
+			current = current.next
+		}
+		current.next = new Node(data)
+		this.length++
+	}
+	get(index){
+		if(this.length<index ||index<0){
+			return;
+		}
+		var counter = 0;
+		var current = this.head
+		while(counter<index){
+			current = current.next
+			counter++
+		}
+		return current;
+	}
+	set(index,data){
+		if(index<0 || this.length+1<index){
+			return false;
+		}
+		var node = this.get(index)
+
+		node.data = data
+		return true;
 	}
 }
 
@@ -35,7 +117,7 @@ describe('A Node', () => {
 	});
 });
 
-describe.skip('unshift(data)', () => {
+describe('unshift(data)', () => {
 	it('adds new node to start of list by correctly setting head and updating length.', () => {
 		const l = new LinkedList();
 		l.unshift('Kevin');
@@ -56,7 +138,7 @@ describe.skip('unshift(data)', () => {
 	});
 });
 
-describe.skip('getFirst()', () => {
+describe('getFirst()', () => {
 	it('returns the first node in linked list.', () => {
 		const l = new LinkedList();
 		assert.equal(l.getFirst(), null);
@@ -67,7 +149,7 @@ describe.skip('getFirst()', () => {
 	});
 });
 
-describe.skip('getLast()', () => {
+describe('getLast()', () => {
 	it('returns the last node in linked list.', () => {
 		const l = new LinkedList();
 		l.unshift(1);
@@ -81,7 +163,7 @@ describe.skip('getLast()', () => {
 	});
 });
 
-describe.skip('clear()', () => {
+describe('clear()', () => {
 	it('clears out the linked list and resets length to 0.', () => {
 		const l = new LinkedList();
 		assert.equal(l.length, 0);
@@ -95,7 +177,7 @@ describe.skip('clear()', () => {
 	});
 });
 
-describe.skip('shift()', () => {
+describe('shift()', () => {
 	it('removes AND returns first node, updates length for linked list w/ one node.', () => {
 		const l = new LinkedList();
 		l.unshift(1);
@@ -122,7 +204,7 @@ describe.skip('shift()', () => {
 	});
 });
 
-describe.skip('pop()', () => {
+describe('pop()', () => {
 	it('removes AND returns last node, decreases length.', () => {
 		const l = new LinkedList();
 		l.unshift('b');
@@ -145,7 +227,7 @@ describe.skip('pop()', () => {
 	});
 });
 
-describe.skip('push(data)', () => {
+describe('push(data)', () => {
 	it('adds to the end of the list and increases length.', () => {
 		const l = new LinkedList();
 		l.unshift(1);
@@ -162,7 +244,7 @@ describe.skip('push(data)', () => {
 	});
 });
 
-describe.skip('get(index)', () => {
+describe('get(index)', () => {
 	it('returns null on negative or out of bounds index.', () => {
 		const l = new LinkedList();
 		l.push('Kevin');
@@ -181,7 +263,7 @@ describe.skip('get(index)', () => {
 	});
 });
 
-describe.skip('set(index, data)', () => {
+describe('set(index, data)', () => {
 	it('returns falsy value on out of bounds or negative index.', () => {
 		const l = new LinkedList();
 		l.push(2);

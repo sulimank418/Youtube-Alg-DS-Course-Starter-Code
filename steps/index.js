@@ -16,7 +16,21 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+function steps(n) {
+  for (let i = 1; i <= n; i++) {
+    var step = '';
+    // for (let hash = 0; hash < i; hash++) {
+    //   step += '#'
+    // }
+    // for (let space = 0; space < n - i; space++) {
+    //   step += ' ';
+    // }
+    step += "#".repeat(i);
+    step += " ".repeat(n - i);
+
+    console.log(step)
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
